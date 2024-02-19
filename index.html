@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><3</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Arial Black', sans-serif; /* Set a bulkier font-family */
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    #valentineHeader {
+      margin-top: -50vh; /* Move the header higher by 50% of the viewport height */
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .option-button {
+      padding: 10px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      margin: 0 10px; /* Adjust margin for better spacing */
+      color: white;
+      text-decoration: none;
+      border: none;
+      display: inline-block;
+      width: 150px; /* Set a fixed width for each option */
+      text-align: center; /* Center text within the option */
+      border-radius: 5px; /* Add rounded corners to the options */
+    }
+
+    .green-box {
+      background-color: green;
+      color: white; /* Set text color to white */
+      transition: transform 0.3s; /* Add a smooth transition for the transform property */
+    }
+
+    .red-box {
+      background-color: red;
+      transition: transform 0.3s; /* Add a smooth transition for the transform property */
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen h1 {
+      font-size: 48px;
+      color: black; /* Black color for the headline in the screen */
+      text-align: center; /* Center the text */
+      margin-bottom: 10px; /* Add margin at the bottom */
+    }
+
+    .gif-container {
+      text-align: center; /* Center the GIF container */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mainScreen">
+    <h1>Will you be my Valentine? <3</h1>
+
+    <div class="options-container">
+      <a href="#" class="option-button green-box" onclick="showScreen('newScreen')">YES</a>
+      <a href="#" class="option-button red-box" onclick="optionClicked('ahh no')">Umm no</a>
+    </div>
+  </div>
+
+  <div id="newScreen" class="screen">
+    <h1>aww yaaay!!</h1>
+    <div class="gif-container">
+      <img src="https://gifdb.com/images/high/bear-hug-kiss-bubu-dudu-pdyvjfqgohc9pk18.gif" alt="Bear Hug Kiss">
+      <!-- Add your GIF code or link here -->
+    </div>
+  </div>
+
+  <div id="valentineScreen" class="screen">
+    <div id="valentineHeader">
+      <h1>Will you be my Valentine? <3</h1>
+    </div>
+
+    <div class="options-container">
+      <a href="#" class="option-button green-box" onclick="optionClicked('YES')">YES</a>
+      <a href="#" class="option-button red-box" onclick="optionClicked('are you sure?')">ahh no</a>
+    </div>
+  </div>
+
+  <script>
+    let greenBoxSize = 100; /* Initial size of the green box */
+    let redBoxClicks = 0; /* Variable to track the number of red box clicks */
+
+    function optionClicked(option) {
+      const redBoxTexts = [
+        'Are you absolutely certain?',
+        'Please think about it.',
+        'you will break my heart',
+        '------im gay',
+        '---------- :(',
+        'Come onnnn',
+        'rip',
+      ];
+
+      if (option === 'ahh no' && redBoxClicks < 7) {
+        document.querySelector('.red-box').innerHTML = redBoxTexts[redBoxClicks];
+        greenBoxSize *= 1.2; /* Increase green box size by 20% */
+        document.querySelector('.green-box').style.transform = `scale(${greenBoxSize / 100})`;
+        redBoxClicks++;
+      }
+    }
+
+    function showScreen(screenId) {
+      document.getElementById("mainScreen").style.display = "none";
+      document.getElementById("newScreen").style.display = "none";
+      document.getElementById("valentineScreen").style.display = "none";
+      document.getElementById(screenId).style.display = "block";
+    }
+  </script>
+</body>
+
+</html>
